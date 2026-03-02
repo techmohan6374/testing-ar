@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Star Graphix AR</title>
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <!-- AR.js -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="startAR" style="position:fixed;z-index:9999;top:40%;left:50%;transform:translate(-50%,-50%);
+padding:15px 25px;font-size:18px;background:#00ffff;border:none;border-radius:8px;">
+        Start AR Camera
+    </button>
+
+    <a-scene embedded vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;"
+        arjs="sourceType: webcam; facingMode: environment; debugUIEnabled: false;">
+
+        <a-marker preset="hiro">
+
+            <a-image src="./logo.png" position="0 0.5 0" rotation="-90 0 0" width="2" height="1.2">
+            </a-image>
+
+            <a-text value="STAR GRAPHIX" color="#00ffff" align="center" position="0 1 0" scale="1.5 1.5 1.5">
+            </a-text>
+
+        </a-marker>
+
+        <a-entity camera="near: 0.1; far: 10000"></a-entity>
+
+    </a-scene>
+
+    <script>
+        document.getElementById("startAR").onclick = function () {
+            document.querySelector("a-scene").style.display = "block";
+            this.style.display = "none";
+        };
+        document.querySelector("a-scene").style.display = "none";
+    </script>
+
+</body>
+
+</html>
